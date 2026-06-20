@@ -1,0 +1,97 @@
+// Zed settings — https://zed.dev/docs/configuring-zed
+{
+  // --- Panels / general ---
+  "disable_ai": true,
+  "diagnostics": {
+    "lsp_pull_diagnostics": {
+      "enabled": true
+    },
+    "include_warnings": true
+  },
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "title_bar": {
+    "show_sign_in": false
+  },
+  "project_panel": { "dock": "left" },
+  "outline_panel": { "dock": "left" },
+  "collaboration_panel": { "dock": "left" },
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "git_panel": { "dock": "left" },
+  "telemetry": { "diagnostics": false, "metrics": false },
+
+  // --- Auto-installed extensions ---
+  "auto_install_extensions": { "html": true, "swift": true },
+
+  // --- Base keymap + theme ---
+  "base_keymap": "SublimeText",
+  "theme": "FireCode",
+
+  // --- Fonts ---
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "buffer_font_family": "Liberation Mono",
+  "buffer_line_height": { "custom": 1.2 },
+  "terminal": {
+    "font_size": 16
+  },
+
+  // --- Editor behavior ---
+  "minimap": { "show": "never" },
+  "use_autoclose": false,
+  "use_auto_surround": false,
+  "current_line_highlight": "none",
+  "selection_highlight": false,
+  "format_on_save": "on",
+  "remove_trailing_whitespace_on_save": true,
+  "sticky_scroll": { "enabled": false },
+  "inlay_hints": { "enabled": false },
+
+  // --- Per-language formatters ---
+  "languages": {
+    "JavaScript": {
+      "formatter": "prettier",
+      "format_on_save": "on",
+      "prettier": { "allowed": true }
+    },
+    "TypeScript": {
+      "formatter": "prettier",
+      "format_on_save": "on",
+      "prettier": { "allowed": true }
+    },
+    "TSX": {
+      "formatter": "prettier",
+      "format_on_save": "on",
+      "prettier": { "allowed": true }
+    },
+
+    // C / C++ formatted on save by clangd (clang-format)
+    "C": {
+      "formatter": "language_server",
+      "format_on_save": "on"
+    },
+    "C++": {
+      "formatter": "language_server",
+      "format_on_save": "on"
+    }
+  },
+
+  // --- clangd: --fallback-style=none means it only formats when the repo has a .clang-format ---
+  "lsp": {
+    "clangd": {
+      "binary": {
+        "arguments": ["--fallback-style=none"]
+      }
+    }
+  }
+}

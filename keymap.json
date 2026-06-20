@@ -1,0 +1,110 @@
+// Zed keymap — https://zed.dev/docs/key-bindings
+// Ctrl-based bindings (VSCode/Windows layout).
+[
+  // ====================================================================
+  // Workspace bindings
+  // ====================================================================
+  {
+    "bindings": {
+      // File / window / tab management
+      "ctrl-p":         "file_finder::Toggle",
+      "ctrl-shift-p":   "command_palette::Toggle",
+      "ctrl-shift-o":   "outline::Toggle",
+      "ctrl-s":         "workspace::Save",
+      "ctrl-shift-s":   "workspace::SaveAs",
+      "ctrl-w":         "pane::CloseActiveItem",
+      "ctrl-shift-t":   "pane::ReopenClosedItem",
+      "ctrl-n":         "workspace::NewFile",
+      "ctrl-shift-n":   "workspace::NewWindow",
+      "ctrl-o":         "workspace::Open",
+      "ctrl-,":         "zed::OpenSettings",
+      "ctrl-q":         "zed::Quit",
+      "ctrl-b":         "workspace::ToggleLeftDock",
+      "ctrl-shift-e":   "project_panel::ToggleFocus",
+
+      // Find / replace
+      "ctrl-f":         "buffer_search::Deploy",
+      "ctrl-shift-f":   "pane::DeploySearch",
+      "ctrl-shift-h":   ["pane::DeploySearch", { "replace_enabled": true }],
+      "ctrl-h":         "buffer_search::DeployReplace",
+      "ctrl-g":         "go_to_line::Toggle",
+
+      // Tab navigation
+      "ctrl-tab":       "pane::ActivateNextItem",
+      "ctrl-shift-tab": "pane::ActivatePreviousItem"
+    }
+  },
+
+  // ====================================================================
+  // Editor bindings
+  // ====================================================================
+  {
+    "context": "Editor",
+    "bindings": {
+      // Clipboard
+      "ctrl-c":       "editor::Copy",
+      "ctrl-v":       "editor::Paste",
+      "ctrl-x":       "editor::Cut",
+      "ctrl-z":       "editor::Undo",
+      "ctrl-shift-z": "editor::Redo",
+      "ctrl-y":       "editor::Redo",
+
+      // Selection
+      "ctrl-a":       "editor::SelectAll",
+      "ctrl-l":       "editor::SelectLine",
+      "ctrl-d":       "editor::SelectNext",
+
+      // Comment / indent
+      "ctrl-/":       "editor::ToggleComments",
+      "ctrl-]":       "editor::Indent",
+      "ctrl-[":       "editor::Outdent",
+
+      // Code intel
+      "ctrl-.":       "editor::ToggleCodeActions",
+      "ctrl-space":   "editor::ShowCompletions",
+
+      // Document / line navigation
+      "ctrl-home":       "editor::MoveToBeginning",
+      "ctrl-end":        "editor::MoveToEnd",
+      "ctrl-shift-home": "editor::SelectToBeginning",
+      "ctrl-shift-end":  "editor::SelectToEnd",
+      "home":            "editor::MoveToBeginningOfLine",
+      "end":             "editor::MoveToEndOfLine",
+      "shift-home":      "editor::SelectToBeginningOfLine",
+      "shift-end":       "editor::SelectToEndOfLine"
+    }
+  },
+
+  // ====================================================================
+  // Editor: function keys, bookmarks, multi-cursor
+  // ====================================================================
+  {
+    "context": "Editor",
+    "bindings": {
+      // F8 / F7: next / previous diff hunk
+      "f8": "editor::GoToHunk",
+      "f7": "editor::GoToPreviousHunk",
+
+      // F9: sort selected lines
+      "f9": "editor::SortLinesCaseSensitive",
+
+      // F2 / ctrl-f2: next bookmark / toggle bookmark
+      "f2":         "editor::GoToNextBookmark",
+      "ctrl-f2":    "editor::ToggleBookmark",
+
+      // Add cursor below / above
+      "shift-cmd-down":  "editor::AddSelectionBelow",
+      "shift-cmd-up":    "editor::AddSelectionAbove",
+      "shift-ctrl-down": "editor::AddSelectionBelow",
+      "shift-ctrl-up":   "editor::AddSelectionAbove",
+
+      // Select all matches of selection
+      "cmd-f3":  "editor::SelectAllMatches",
+      "ctrl-f3": "editor::SelectAllMatches",
+
+      // Split selection into one cursor per line
+      "ctrl-shift-l": "editor::SplitSelectionIntoLines",
+      "shift-alt-i":  "editor::SplitSelectionIntoLines"
+    }
+  }
+]
