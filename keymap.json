@@ -31,7 +31,11 @@
 
       // Tab navigation
       "ctrl-tab":       "pane::ActivateNextItem",
-      "ctrl-shift-tab": "pane::ActivatePreviousItem"
+      "ctrl-shift-tab": "pane::ActivatePreviousItem",
+
+      // Split current pane: right (vertical) / down (horizontal)
+      "ctrl-\\":        "pane::SplitRight",
+      "ctrl--":         "pane::SplitDown"
     }
   },
 
@@ -91,6 +95,10 @@
       // F2 / ctrl-f2: next bookmark / toggle bookmark
       "f2":         "editor::GoToNextBookmark",
       "ctrl-f2":    "editor::ToggleBookmark",
+
+      // F3 / shift-f3: find next / previous match of the active search
+      "f3":         "search::SelectNextMatch",
+      "shift-f3":   "search::SelectPreviousMatch",
 
       // Add cursor below / above
       "shift-cmd-down":  "editor::AddSelectionBelow",
