@@ -19,3 +19,5 @@ From the cloned repo (remove an existing `~/.config/zed` first):
 
     mkdir -p ~/.config
     ln -s `pwd` ~/.config/zed
+    mkdir -p ~/bin
+    ln -s /Applications/Zed.app/Contents/MacOS/cli ~/bin/zed
