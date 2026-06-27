@@ -35,7 +35,12 @@
 
       // Split current pane: right (vertical) / down (horizontal)
       "ctrl-\\":        "pane::SplitRight",
-      "ctrl--":         "pane::SplitDown"
+      "ctrl--":         "pane::SplitDown",
+
+      // Filter current file by the SELECTED text into a new buffer (no terminal).
+      // Regex variants ("… regex (prompt)") are available via `task: spawn`.
+      "ctrl-k ctrl-f":  ["task::Spawn", { "task_name": "Filter file: keep lines matching selection → new buffer" }],
+      "ctrl-k ctrl-d":  ["task::Spawn", { "task_name": "Filter file: drop lines matching selection → new buffer" }]
     }
   },
 

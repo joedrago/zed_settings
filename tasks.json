@@ -1,2 +1,63 @@
 // Zed tasks — https://zed.dev/docs/tasks
-[]
+//
+// Filter the current file's lines into a NEW buffer (grep-style).
+// Notes that took some figuring out:
+//   - The whole pipeline lives in `command`; Zed flattens command+args into
+//     one shell line, so a nested `sh -c "..."` gets re-split and mangled.
+//   - `zed -` does NOT read stdin in this CLI, so results are written to a
+//     temp file and opened with `zed <file>`. That temp file also gives the
+//     result a real name/extension, so you can re-run a filter on it (chain).
+//   - File/selection come from the ZED_* ENV vars via `printenv` (a bareword,
+//     so Zed neither textually injects the value — avoiding quoting/injection
+//     bugs — nor drops the task from `task: spawn` for referencing a var,
+//     which is zed#27066).
+//   - `save: current` writes your buffer first, so the on-disk file we read
+//     matches what you see (you don't have to save manually).
+//   - Output name is unique per run (PID + epoch), so filters don't clobber
+//     each other.
+//
+// The SELECTION tasks need no terminal (reveal: never): select the text to
+// match, then trigger. Literal match (rg -F). Nothing happens if you have no
+// selection. The PROMPT tasks pop a terminal to type a regex (smart-case).
+[
+  {
+    "label": "Filter file: keep lines matching selection → new buffer",
+    "command": "src=\"$(printenv ZED_FILE)\"; pat=\"$(printenv ZED_SELECTED_TEXT)\"; [ -n \"$pat\" ] || exit 0; ext=\"txt\"; case \"$src\" in *.*) ext=\"${src##*.}\";; esac; out=\"${TMPDIR:-/tmp}/zed-filter-$$-$(date +%s).$ext\"; rg -F --no-line-number --color=never -- \"$pat\" \"$src\" > \"$out\"; zed \"$out\"",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": true,
+    "save": "current",
+    "reveal": "never",
+    "hide": "on_success"
+  },
+  {
+    "label": "Filter file: drop lines matching selection → new buffer",
+    "command": "src=\"$(printenv ZED_FILE)\"; pat=\"$(printenv ZED_SELECTED_TEXT)\"; [ -n \"$pat\" ] || exit 0; ext=\"txt\"; case \"$src\" in *.*) ext=\"${src##*.}\";; esac; out=\"${TMPDIR:-/tmp}/zed-filter-$$-$(date +%s).$ext\"; rg -F -v --no-line-number --color=never -- \"$pat\" \"$src\" > \"$out\"; zed \"$out\"",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": true,
+    "save": "current",
+    "reveal": "never",
+    "hide": "on_success"
+  },
+  {
+    "label": "Filter file: keep lines matching regex (prompt)",
+    "command": "printf 'keep lines matching (regex): ' >&2; read -r pat; src=\"$(printenv ZED_FILE)\"; ext=\"txt\"; case \"$src\" in *.*) ext=\"${src##*.}\";; esac; out=\"${TMPDIR:-/tmp}/zed-filter-$$-$(date +%s).$ext\"; rg --smart-case --no-line-number --color=never -- \"$pat\" \"$src\" > \"$out\"; zed \"$out\"",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": true,
+    "save": "current",
+    "reveal": "always",
+    "hide": "on_success",
+    "show_summary": false,
+    "show_command": false
+  },
+  {
+    "label": "Filter file: drop lines matching regex (prompt)",
+    "command": "printf 'drop lines matching (regex): ' >&2; read -r pat; src=\"$(printenv ZED_FILE)\"; ext=\"txt\"; case \"$src\" in *.*) ext=\"${src##*.}\";; esac; out=\"${TMPDIR:-/tmp}/zed-filter-$$-$(date +%s).$ext\"; rg --smart-case --no-line-number --color=never -v -- \"$pat\" \"$src\" > \"$out\"; zed \"$out\"",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": true,
+    "save": "current",
+    "reveal": "always",
+    "hide": "on_success",
+    "show_summary": false,
+    "show_command": false
+  }
+]
