@@ -94,6 +94,9 @@
       "f8": "editor::GoToHunk",
       "f7": "editor::GoToPreviousHunk",
 
+      // F5: reload file from disk
+      "f5": "editor::ReloadFile",
+
       // F9: sort selected lines
       "f9": "editor::SortLinesCaseSensitive",
 
