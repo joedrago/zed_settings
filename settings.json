@@ -32,7 +32,7 @@
   "telemetry": { "diagnostics": false, "metrics": false },
 
   // --- Auto-installed extensions ---
-  "auto_install_extensions": { "html": true, "swift": true },
+  "auto_install_extensions": { "html": true, "swift": true, "lua": true },
 
   // --- Base keymap + theme ---
   "base_keymap": "SublimeText",
