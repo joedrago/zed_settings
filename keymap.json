@@ -72,6 +72,14 @@
       "ctrl-.":       "editor::ToggleCodeActions",
       "ctrl-space":   "editor::ShowCompletions",
 
+      // Word navigation — override the SublimeText base keymap, which binds
+      // ctrl-arrow to the *Subword* actions (those stop inside camelCase, so
+      // "getDeviceModel" breaks at get|Device|Model). Whole-word instead.
+      "ctrl-left":        "editor::MoveToPreviousWordStart",
+      "ctrl-right":       "editor::MoveToNextWordEnd",
+      "ctrl-shift-left":  "editor::SelectToPreviousWordStart",
+      "ctrl-shift-right": "editor::SelectToNextWordEnd",
+
       // Document / line navigation
       "ctrl-home":       "editor::MoveToBeginning",
       "ctrl-end":        "editor::MoveToEnd",
