@@ -9,7 +9,6 @@
       // File / window / tab management
       "ctrl-p":         "file_finder::Toggle",
       "ctrl-shift-p":   "command_palette::Toggle",
-      "ctrl-shift-o":   "outline::Toggle",
       "ctrl-s":         "workspace::Save",
       "ctrl-shift-s":   "workspace::SaveAs",
       "ctrl-w":         "pane::CloseActiveItem",
@@ -17,6 +16,10 @@
       "ctrl-n":         "workspace::NewFile",
       "ctrl-shift-n":   "workspace::NewWindow",
       "ctrl-o":         "workspace::Open",
+
+      // Open a local file/folder into the current window
+      "ctrl-shift-o":   ["workspace::Open", { "create_new_window": false }],
+
       "ctrl-,":         "zed::OpenSettings",
       "ctrl-q":         "zed::Quit",
       "ctrl-b":         "workspace::ToggleLeftDock",
